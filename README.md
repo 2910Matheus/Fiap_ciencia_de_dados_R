@@ -9,6 +9,8 @@ Antes de executar o script, certifique-se de que as seguintes bibliotecas estão
 - `readxl`: Para leitura de arquivos Excel.
 - `dplyr`: Para manipulação de dados.
 - `ggplot2`: Para visualização de dados.
+- `forcats`: Para ordenação de fatores.
+- `scales`: Para exibir porcentagens.
 
 Você pode instalá-las executando:
 
@@ -16,6 +18,8 @@ Você pode instalá-las executando:
 install.packages("readxl")
 install.packages("dplyr")
 install.packages("ggplot2")
+install.packages("forcats")
+install.packages("scales")
 ```
 
 ## Instruções de Uso
@@ -57,33 +61,43 @@ O script gera três gráficos para ilustrar a distribuição das variáveis:
 
 ```
 ggplot(dados_agricola, aes(x = `Produção Total (milhões de toneladas)`)) +
-  geom_histogram(binwidth = 5, fill = "steelblue", color = "black", alpha = 0.7) +
+  geom_histogram(aes(y = ..density..), binwidth = 5, fill = "steelblue", color = "black", alpha = 0.7) +
+  geom_density(color = "red", alpha = 0.6) +
   labs(title = "Distribuição da Produção Total (milhões de toneladas)",
        x = "Produção Total (milhões de toneladas)",
-       y = "Frequência") +
-  theme_minimal()
+       y = "Densidade") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
 - **Gráfico de Barras da Região**: Mostra a contagem das regiões.
 
 ```
-ggplot(dados_agricola, aes(x = Região)) +
+ggplot(dados_agricola, aes(x = reorder(Região, -table(Região)[Região]))) +
   geom_bar(fill = "orange", color = "black", alpha = 0.7) +
   labs(title = "Distribuição das Regiões",
        x = "Região",
        y = "Contagem") +
-  theme_minimal()
+  geom_text(stat = 'count', aes(label = scales::percent(..count../sum(..count..))), vjust = -0.5) + 
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1))
+
+
 ```
 
 - **Gráfico de Barras da Produtividade**: Exibe a distribuição da variável qualitativa ordinal "Produtividade".
 
 ```
-ggplot(dados_agricola, aes(x = Produtividade)) +
-  geom_bar(fill = "green", color = "black", alpha = 0.7) +
+ggplot(dados_agricola, aes(x = fct_inorder(Produtividade))) +
+  geom_bar(aes(fill = Produtividade), color = "black", alpha = 0.7) +
   labs(title = "Distribuição de Produtividade",
-       x = "Produtividade",
+       x = "Nível de Produtividade",
        y = "Contagem") +
-  theme_minimal()
+  geom_text(stat = 'count', aes(label = ..count..), vjust = -0.5) +  # Exibe contagens sobre as barras
+  scale_fill_manual(values = c("red", "yellow", "green")) +  # Paleta de cores manual para ordinal
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1))
+
 ```
 
 ### 4. Como Executar
