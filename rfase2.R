@@ -18,7 +18,7 @@ library(scales)
 # -----------------------------------------------------------------------------
 # Define o caminho do arquivo Excel contendo os dados agrícolas.
 # Substitua "file_path" pelo caminho correto no seu sistema.
-file_path <- "C:/Users/Matheus/Desktop/R fase 2/dados_agricola.xlsx"  # Substitua pelo caminho correto
+file_path <- ".../dados_agricola.xlsx"  # Substitua pelo caminho correto
 
 # -----------------------------------------------------------------------------
 # Verifica se o arquivo Excel especificado existe antes de tentar carregá-lo.
