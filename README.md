@@ -91,9 +91,9 @@ ggplot(dados_agricola, aes(x = Produtividade)) +
 1. Clone este repositório:
 
 ```
-bash
+
 git clone https://github.com/seu_usuario/seu_repositorio.git
-bash
+
 ```
 
 
