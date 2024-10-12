@@ -46,11 +46,13 @@ O código calcula as principais medidas descritivas para a variável quantitativ
 As medidas são exibidas diretamente no console:
 
 ```
-cat("Média da Produção Total: ", media_producao, "\n")
-cat("Mediana da Produção Total: ", mediana_producao, "\n")
-cat("Desvio Padrão da Produção Total: ", desvio_padrao_producao, "\n")
-cat("Variância da Produção Total: ", variancia_producao, "\n")
-cat("Quartis da Produção Total: \n")
+cat("Estatísticas da Produção Total:\n")
+cat("Média: ", estatisticas_producao$media, "\n")
+cat("Mediana: ", estatisticas_producao$mediana, "\n")
+cat("Desvio Padrão: ", estatisticas_producao$desvio_padrao, "\n")
+cat("Variância: ", estatisticas_producao$variancia, "\n")
+cat("Quartis:\n")
+print(estatisticas_producao$quartis)
 ```
 
 ### 3. Visualização de Dados
