@@ -1,6 +1,3 @@
-# MatheusAugustoRodriguesMaia_RM560683_fase2_cap7
-# AlexdaSilvaLima_RM559784_fase2_cap7
-# JohnatanSousaMacedoLoriano _RM559546_fase2_cap7
 # -----------------------------------------------------------------------------
 # Verifica se os pacotes "readxl", "dplyr", "ggplot2", "forcats" e "scales" estão instalados.
 # Caso contrário, realiza a instalação automaticamente.
